@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:16 # "PostgreSQL 16 sürümünü internetten indir ve kullan"
+    container_name: ainews_db # "bu container adı ainews_db olsun"
+    restart: always # "bilgisayar kapanıp açılsa bile otomatik başlat"
+    environment:
+      POSTGRES_USER: ainews # kullanıcı adı: ainews
+      POSTGRES_PASSWORD: ainews123 # şifre: ainews123
+      POSTGRES_DB: ainews_db # veritabanı adı: ainews_db
+    ports:
+      - "5432:5432" # "container içindeki 5432 portunu dışarıya aç"
+    volumes:
+      - pgdata:/var/lib/postgresql/data # "veriler kaybolmasın, dışarıda sakla"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ainews -d ainews_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: ainews_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
+volumes:
+  pgdata:
+  redisdata:
