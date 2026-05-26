@@ -1,10 +1,13 @@
 # HaberKusu - Yapay Zeka Destekli Haber Platformu
 
+**HaberKusu**, 270+ farklı Türk haber kaynağından haberleri toplayıp, yapay zeka ile kişiselleştirilmiş bir deneyim sunan haber aggregasyon platformudur. Kullanıcının okuma alışkanlıklarını analiz ederek ilgi alanlarına göre haber akışı oluşturur.
+
+> **Backend:** Python / FastAPI · **Frontend:** Next.js 14 · **Veritabanı:** PostgreSQL · **Cache:** Redis
+
 <p align="center">
   <img src="assets/homepage.png" alt="HaberKusu Ana Sayfa" width="100%" />
 </p>
 
-**HaberKusu**, 270+ farklı Türk haber kaynağından haberleri toplayıp, yapay zeka ile kişiselleştirilmiş bir deneyim sunan haber aggregasyon platformudur. Kullanıcının okuma alışkanlıklarını analiz ederek ilgi alanlarına göre haber akışı oluşturur.
 
 ---
 
