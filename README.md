@@ -68,16 +68,12 @@ Her haber için beğenme, kaydetme, paylaşma ve AI özet alma imkanı. Sağ pan
 
 ## Mimari
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│  COLLECTOR   │────▶│  PROCESSOR  │────▶│   STORAGE   │────▶│     API     │
-│  (Scraper)   │     │  (Cleaner)  │     │ (PostgreSQL)│     │  (FastAPI)  │
-└─────────────┘     └─────────────┘     └─────────────┘     └──────┬──────┘
-                                                                    │
-                                                              ┌─────▼──────┐
-                                                              │  FRONTEND  │
-                                                              │  (Next.js) │
-                                                              └────────────┘
+```mermaid
+flowchart LR
+    A["COLLECTOR\n(Scraper)"] --> B["PROCESSOR\n(Cleaner)"]
+    B --> C["STORAGE\n(PostgreSQL)"]
+    C --> D["API\n(FastAPI)"]
+    D --> E["FRONTEND\n(Next.js)"]
 ```
 
 **Akış:**
@@ -199,13 +195,12 @@ haberkusu/
 
 ## Veritabanı Şeması
 
-```
-categories ──┐
-             ├──▶ sources ──▶ articles
-             │                    │
-             └────────────────────┤
-                                  ▼
-                    anonymous_users ──▶ interactions ──▶ recommendations
+```mermaid
+flowchart LR
+    categories --> sources --> articles
+    categories --> articles
+    anonymous_users --> interactions --> recommendations
+    articles --> interactions
 ```
 
 **Temel Tablolar:**
